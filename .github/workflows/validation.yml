@@ -24,7 +24,9 @@ jobs:
       run: npm install
 
     - name: Run tests
-      run: npm run test
+      run: |
+        sleep 60
+        npm run test
 
   build:
     runs-on: ubuntu-24.04
@@ -37,4 +39,6 @@ jobs:
         run: npm install
 
       - name: Build
-        run: npm run build
+        run: |
+          sleep 60
+          npm run build
