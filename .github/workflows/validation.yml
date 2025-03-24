@@ -14,7 +14,7 @@ jobs:
         run: npm install
 
   test:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     needs: setup
     steps:
     - name: Checkout
@@ -23,13 +23,14 @@ jobs:
     - name: Setup deps
       run: npm install
 
+    - name: Slow CI
+      run: sleep 1m
+
     - name: Run tests
-      run: |
-        sleep 60
-        npm run test
+      run: npm run test
 
   build:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     needs: test
     steps:
       - name: Checkout
@@ -38,7 +39,8 @@ jobs:
       - name: Setup deps
         run: npm install
 
+      - name: Slow CI
+        run: sleep 1m
+
       - name: Build
-        run: |
-          sleep 60
-          npm run build
+        run: npm run build
