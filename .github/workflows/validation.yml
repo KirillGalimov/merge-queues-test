@@ -1,0 +1,28 @@
+name: Validation
+
+on:
+  pull_request:
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup deps
+        run: npm install
+
+  test:
+    runs-on: ubuntu-24.04
+    needs: setup
+    steps:
+      - name: Run tests
+        run: npm run test
+
+  build:
+    runs-on: ubuntu-24.04
+    needs: test
+    steps:
+      - name: Build
+        run: npm run build
