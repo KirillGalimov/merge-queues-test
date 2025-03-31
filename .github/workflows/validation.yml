@@ -13,34 +13,12 @@ jobs:
       - name: Setup deps
         run: npm install
 
-  test:
-    runs-on: ubuntu-latest
-    needs: setup
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v4
+  build-and-deploy:
+    name: Build and Deploy
+    uses: ./.github/workflows/test.yml
+    with:
+      should-deploy: true
 
-    - name: Setup deps
-      run: npm install
-
-    - name: Slow CI
-      run: sleep 1m
-
-    - name: Run tests
-      run: npm run test
-
-  build:
-    runs-on: ubuntu-latest
-    needs: test
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup deps
-        run: npm install
-
-      - name: Slow CI
-        run: sleep 1m
-
-      - name: Build
-        run: npm run build
+  build-no-deploy:
+    name: Build (no deploy)
+    uses: ./.github/workflows/test.yml
