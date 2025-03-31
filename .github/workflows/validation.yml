@@ -16,9 +16,9 @@ jobs:
   build-and-deploy:
     name: Build and Deploy
     uses: ./.github/workflows/test.yml
-    with:
-      should-deploy: true
 
   build-no-deploy:
     name: Build (no deploy)
     uses: ./.github/workflows/test.yml
+    with:
+      should-deploy: false

@@ -5,7 +5,7 @@ on:
     inputs:
       should-deploy:
         type: boolean
-        default: false
+        default: true
 
 jobs:
   setup:
